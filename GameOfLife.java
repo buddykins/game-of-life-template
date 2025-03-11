@@ -34,13 +34,12 @@ public class GameOfLife implements Board {
     // Step the simulation forward one turn.
     public void step()
     {
-
+        int[][] result = new int[board.length][board[0].length];
         print();
-        int[][] state = new int[board.length][board[].length];
         for(int r = 0; r < board.length; r++){
             for(int c = 0; c < board[r].length; r++){
+                if (board.countNeighbors(r,c) > 1 && board.countNeighbors(r,c))
                 
-                result[r][c] = board[r][c];
             }
         }
         board = result;
@@ -49,7 +48,7 @@ public class GameOfLife implements Board {
 
 
     public int countNeighbors(int x, int y) {
-        int count = 0;
+        int count = get(x - 1, y - 1) + get(x, y -1) + get(x+1, y - 1) + get(x - 1, y) + get(x+1,y) + get(x - 1, y+1) + get(x, y+1) + get(x+1,y+1); // there has to be a neater for loop way to do it
         // count the number of neighbors the cell has
         // use the get(x,y) method to read any board state you need.
 
