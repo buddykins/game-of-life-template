@@ -34,20 +34,19 @@ public class GameOfLife implements Board {
     // Step the simulation forward one turn.
     public void step()
     {
-        int[][] result = new int[board.length][board[0].length];
+        result = new int[board.length][board[0].length];
         print();
         for(int r = 0; r < board.length; r++){
-            for(int c = 0; c < board[r].length; r++){
-                if (board[r][c] == 0 && countNeighbors(r, c) > 3){
-                    board[r][c] = 1;
+            for(int c = 0; c < board[r].length; c++){
+                int neighbors = countNeighbors(r, c);
+        
+                if (board[r][c] == 1 && (neighbors == 2 || neighbors == 3)) {
+                    result[r][c] = 1;
+                } else if (board[r][c] == 0 && neighbors == 3) {
+                    result[r][c] = 1;
+                } else {
+                    result[r][c] = 0;
                 }
-                if (board[r][c] == 1 && countNeighbors(r,c) == 2 || board[r][c] == 1 && countNeighbors(r,c) == 3){
-                    board[r][c] = 1;
-                }
-                if (board[r][c] == 1 && countNeighbors(r,c) >3 || board[r][c] == 1 && countNeighbors(r,c) < 3){
-                    board[r][c] = 0;
-                }
-                
             }
         }
         
@@ -56,6 +55,7 @@ public class GameOfLife implements Board {
 
 
     public int countNeighbors(int x, int y) {
+        
         int count = get(x - 1, y - 1) + get(x, y -1) + get(x+1, y - 1) + get(x - 1, y) + get(x+1,y) + get(x - 1, y+1) + get(x, y+1) + get(x+1,y+1); // there has to be a neater for loop way to do it
         // count the number of neighbors the cell has
         // use the get(x,y) method to read any board state you need.
