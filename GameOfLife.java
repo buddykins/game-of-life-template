@@ -3,11 +3,15 @@ import java.util.Arrays;
 public class GameOfLife implements Board {
 
     // Integers: 0 or 1 for alive or dead
+    int l = 1;
+    int d = 0;
     private int[][] board;
-
+    private int[][] result;
     public GameOfLife(int x, int y)
     {
+        int[][] test = new int[x][y];
         // Construct a 2d array of the given x and y size.
+        board = test; // for some reason i couldnt just set board to x y but this worked?
     }
 
     // Set values on the board
@@ -22,12 +26,24 @@ public class GameOfLife implements Board {
     // Run the simulation for a number of turns
     public void run(int turns) {
         // call step the number of times requested
+        for(int j = 0; j < turns ; j++){
+            step();
+        }
     }
 
     // Step the simulation forward one turn.
     public void step()
     {
+
         print();
+        int[][] state = new int[board.length][board[].length];
+        for(int r = 0; r < board.length; r++){
+            for(int c = 0; c < board[r].length; r++){
+                
+                result[r][c] = board[r][c];
+            }
+        }
+        board = result;
         // Update the game board, store a 1 if the cell is alive and a 0 otherwise.
     }
 
@@ -36,6 +52,8 @@ public class GameOfLife implements Board {
         int count = 0;
         // count the number of neighbors the cell has
         // use the get(x,y) method to read any board state you need.
+
+        
         return count;
     }
 
